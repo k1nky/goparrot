@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"reflect"
+	"strconv"
 
 	"gopkg.in/yaml.v2"
 )
@@ -13,7 +14,7 @@ type HandlerConfig struct {
 	Prefix        string `yaml:"prefix" default:"/"`
 	DumpHeaders   bool   `yaml:"dumpHeaders"`
 	DumpBody      bool   `yaml:"dumpBody"`
-	Code          string `yaml:"code" default:"200"`
+	Code          int    `yaml:"code" default:"200"`
 	ResponseByLua bool   `yaml:"responseByLua"`
 	ResponseLua   string `yaml:"responseLua"`
 	Type          string `yaml:"type" default:"http"`
@@ -36,12 +37,21 @@ func setStringValue(value reflect.Value, defvalue string) {
 	}
 }
 
+func setIntValue(value reflect.Value, defvaule string) {
+	dv, _ := strconv.Atoi(defvaule)
+	if value.Int() == 0 {
+		value.SetInt(int64(dv))
+	}
+}
+
 func setStructValue(value reflect.Value) {
 	rt := value.Type()
 	for i := 0; i < rt.NumField(); i++ {
 		switch rt.Field(i).Type.Kind() {
 		case reflect.String:
 			setStringValue(value.Field(i), rt.Field(i).Tag.Get("default"))
+		case reflect.Int:
+			setIntValue(value.Field(i), rt.Field(i).Tag.Get("default"))
 		case reflect.Slice:
 			for j := 0; j < value.Field(i).Len(); j++ {
 				v := value.Field(i).Index(j)

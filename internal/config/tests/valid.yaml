@@ -2,7 +2,7 @@
 # Valid configuration
 port: 8080
 handlers:
-  - prefix: "/"
-  - prefix: "/one"
+  - prefix: /
+  - prefix: /one
     code: 301
-  - type: "ws"
+  - type: ws

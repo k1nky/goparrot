@@ -5,4 +5,5 @@ go:
   - 1.15
 script:
   - go test -v ./internal/config
+  - go test -v ./cmd/
   - go build -v cmd/goparrot.go

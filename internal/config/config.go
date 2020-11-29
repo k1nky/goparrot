@@ -18,6 +18,7 @@ type HandlerConfig struct {
 	ResponseByLua bool   `yaml:"responseByLua"`
 	ResponseLua   string `yaml:"responseLua"`
 	Type          string `yaml:"type" default:"http"`
+	Root          string `yaml:"root" default:""`
 }
 
 type Config struct {

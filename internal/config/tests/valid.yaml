@@ -5,4 +5,10 @@ handlers:
   - prefix: /
   - prefix: /one
     code: 301
-  - type: ws
+    dumpHeaders: true
+    dumpBody: true
+  - prefix: /ws
+    type: ws
+  - prefix: /static
+    type: file
+    root: /files

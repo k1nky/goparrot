@@ -1,1 +1,2 @@
 [![BCH compliance](https://bettercodehub.com/edge/badge/k1nky/goparrot?branch=master)](https://bettercodehub.com/)
+[![Build Status](https://travis-ci.org/k1nky/goparrot.svg?branch=master)](https://travis-ci.org/k1nky/goparrot)

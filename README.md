@@ -1,0 +1,1 @@
+[![BCH compliance](https://bettercodehub.com/edge/badge/k1nky/goparrot?branch=master)](https://bettercodehub.com/)

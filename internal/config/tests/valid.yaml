@@ -1,0 +1,8 @@
+---
+# Valid configuration
+port: 8080
+workers:
+  - prefix: "/"
+  - prefix: "/one"
+    code: 301
+  - type: "ws"

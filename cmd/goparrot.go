@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	config.LoadConfig("../internal/config/tests/config01.yaml")
+	config.LoadConfig("../internal/config/tests/valid.yaml")
 }

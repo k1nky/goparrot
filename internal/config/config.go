@@ -9,7 +9,7 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-type WorkerConfig struct {
+type HandlerConfig struct {
 	Prefix        string `yaml:"prefix" default:"/"`
 	DumpHeaders   bool   `yaml:"dumpHeaders"`
 	DumpBody      bool   `yaml:"dumpBody"`
@@ -20,9 +20,9 @@ type WorkerConfig struct {
 }
 
 type Config struct {
-	Port    string         `yaml:"port" default:"8080"`
-	Listen  string         `yaml:"listen" default:"0.0.0.0"`
-	Workers []WorkerConfig `yaml:"workers"`
+	Port     string          `yaml:"port" default:"8080"`
+	Listen   string          `yaml:"listen" default:"0.0.0.0"`
+	Handlers []HandlerConfig `yaml:"handlers"`
 }
 
 func validateConfig(cfg *Config) {

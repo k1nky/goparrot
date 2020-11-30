@@ -11,14 +11,13 @@ import (
 )
 
 type HandlerConfig struct {
-	Prefix        string `yaml:"prefix" default:"/"`
-	DumpHeaders   bool   `yaml:"dumpHeaders"`
-	DumpBody      bool   `yaml:"dumpBody"`
-	Code          int    `yaml:"code" default:"200"`
-	ResponseByLua bool   `yaml:"responseByLua"`
-	ResponseLua   string `yaml:"responseLua"`
-	Type          string `yaml:"type" default:"http"`
-	Root          string `yaml:"root" default:""`
+	Prefix      string `yaml:"prefix" default:"/"`
+	DumpHeaders bool   `yaml:"dumpHeaders"`
+	DumpBody    bool   `yaml:"dumpBody"`
+	Code        int    `yaml:"code" default:"200"`
+	ResponseLua string `yaml:"responseLua" default:""`
+	Type        string `yaml:"type" default:"http"`
+	Root        string `yaml:"root" default:""`
 }
 
 type Config struct {

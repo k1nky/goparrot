@@ -1,8 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"context"
-	"io"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -34,11 +35,23 @@ func runLuaBlock(code string) string {
 
 func makeHTTPHandler(options config.HandlerConfig) EchoHTTPHandler {
 	return func(w http.ResponseWriter, r *http.Request) {
-		if options.ResponseLua != "" {
-			body := runLuaBlock(options.ResponseLua)
-			io.WriteString(w, body)
-
+		var buf bytes.Buffer
+		if options.DumpHeaders {
+			buf.WriteString(fmt.Sprintf("%s %s %s\n", r.Method, r.RequestURI, r.Proto))
+			for h, v := range r.Header {
+				buf.WriteString(fmt.Sprintf("%s: %s\n", h, v))
+			}
 		}
+		if options.DumpBody {
+			buf.ReadFrom(r.Body)
+			buf.WriteString("\n")
+		}
+		if options.ResponseLua != "" {
+			luaResponse := runLuaBlock(options.ResponseLua)
+			buf.WriteString(luaResponse)
+			buf.WriteString("\n")
+		}
+		buf.WriteTo(w)
 		w.WriteHeader(options.Code)
 	}
 }

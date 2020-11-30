@@ -7,3 +7,5 @@ script:
   - go test -v ./internal/config
   - go test -v ./cmd/
   - go build -v cmd/*.go
+#after_success:
+#  - bash <(curl -s https://codecov.io/bash)

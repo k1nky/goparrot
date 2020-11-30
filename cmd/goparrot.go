@@ -24,7 +24,7 @@ func main() {
 	router := mux.NewRouter()
 	for _, h := range Config.Handlers {
 		if h.Type == "http" {
-			router.HandleFunc(h.Prefix, makeHTTPHandler(h))
+			router.PathPrefix(h.Prefix).HandlerFunc(makeHTTPHandler(h))
 		}
 	}
 	srv := &http.Server{
